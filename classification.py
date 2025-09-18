@@ -7,8 +7,8 @@
 # -----------------------------------------------------------------------------
 
 """
-Minimal RB3 inference demo for tutorials.
-Supports GoogleNet image classification on both image files and live camera.
+Minimal RB3 inference demo for Qualcomm RB3 platform.
+Demonstrates GoogleNet image classification on image files and live camera feed.
 """
 
 import argparse
@@ -26,7 +26,7 @@ from camera_interface import CameraInference
 from config import DEVICE_OS
 from image_utils import create_pixbuf_from_frame
 
-# Try to import GTK for camera display (optional)
+ # Attempt to import GTK for optional camera display
 try:
     import gi
     gi.require_version('Gtk', '3.0')
@@ -38,10 +38,18 @@ except ImportError:
 
 
 class MinimalDemo:
-    """Minimal demo class for RB3 inference."""
+    """
+    Minimal demo class for RB3 inference.
+    Provides image classification using GoogleNet on static images or live camera feed.
+    """
     
     def __init__(self, use_delegate: bool = True, headless: bool = False):
-        """Initialize the demo."""
+        """
+        Initialize the demo.
+        Args:
+            use_delegate: Enable hardware acceleration if True.
+            headless: Run without GUI display if True.
+        """
         self.use_delegate = use_delegate
         self.headless = headless
         self.camera_inference = None
@@ -58,12 +66,16 @@ class MinimalDemo:
         self.setup_signal_handlers()
     
     def setup_signal_handlers(self):
-        """Setup signal handlers for graceful shutdown."""
+        """
+        Setup signal handlers for graceful shutdown.
+        """
         signal.signal(signal.SIGINT, self._signal_handler)
         signal.signal(signal.SIGTERM, self._signal_handler)
     
     def _signal_handler(self, signum, frame):
-        """Handle shutdown signals."""
+        """
+        Handle shutdown signals for graceful exit.
+        """
         print("\nShutting down gracefully...")
         self.stop()
         if self.window and GTK_AVAILABLE:
@@ -73,9 +85,8 @@ class MinimalDemo:
     def classify_image(self, image_path: str) -> None:
         """
         Classify a single image using GoogleNet.
-        
         Args:
-            image_path: Path to the image file
+            image_path: Path to the image file.
         """
         print(f"Classifying image: {image_path}")
         print(f"Device: {DEVICE_OS}")
@@ -102,7 +113,7 @@ class MinimalDemo:
     
     def run_live_camera(self) -> None:
         """
-        Run live camera classification.
+        Run live camera classification using GoogleNet.
         """
         print("Starting live camera classification...")
         print(f"Device: {DEVICE_OS}")
@@ -127,8 +138,7 @@ class MinimalDemo:
                 image_callback=self._on_camera_frame if not self.headless else None
             )
             
-            # WORKAROUND: In headless mode, we need to directly call the callback
-            # since GLib.idle_add won't work without GTK main loop
+            # In headless mode, directly call the callback since GLib.idle_add requires GTK main loop
             if self.headless:
                 # Override the detection callback to call directly
                 original_send_method = self.camera_inference._send_inference_results
@@ -188,7 +198,9 @@ class MinimalDemo:
             self.stop()
     
     def _setup_camera_display(self) -> None:
-        """Setup GTK window for camera display."""
+        """
+        Setup GTK window for camera display.
+        """
         if not GTK_AVAILABLE:
             return
             
@@ -209,16 +221,17 @@ class MinimalDemo:
         self.window.show_all()
     
     def _on_window_destroy(self, widget):
-        """Handle window close."""
+        """
+        Handle window close event.
+        """
         self.stop()
         Gtk.main_quit()
     
     def _on_camera_frame(self, frame):
         """
         Handle new camera frame for display.
-        
         Args:
-            frame: Camera frame as numpy array
+            frame: Camera frame as numpy array.
         """
         if self.headless or not self.image_widget:
             return
@@ -239,9 +252,8 @@ class MinimalDemo:
     def _on_classification_results(self, results: List[Tuple[str, float]]) -> None:
         """
         Handle classification results from live camera.
-        
         Args:
-            results: List of (label, confidence) tuples
+            results: List of (label, confidence) tuples.
         """
         current_time = time.time()
         
@@ -283,7 +295,9 @@ class MinimalDemo:
             sys.stdout.flush()
     
     def stop(self) -> None:
-        """Stop the demo."""
+        """
+        Stop the demo and release resources.
+        """
         self.running = False
         if self.camera_inference:
             self.camera_inference.stop()
@@ -291,7 +305,10 @@ class MinimalDemo:
 
 
 def main():
-    """Main function with argument parsing."""
+    """
+    Main function with argument parsing.
+    Parses command-line arguments and runs the appropriate demo mode.
+    """
     parser = argparse.ArgumentParser(
         description="Minimal RB3 inference demo for GoogleNet image classification",
         formatter_class=argparse.RawDescriptionHelpFormatter,
