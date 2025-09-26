@@ -211,12 +211,6 @@ PERFORMANCE_CONFIG = {
 - **Output**: 1000 ImageNet class probabilities
 - **Labels**: Standard ImageNet class names
 
-### PPE Detection Model (Future Support)
-- **Model**: Custom YOLO-based PPE detection
-- **Input**: 96x96 RGB images
-- **Output**: Bounding boxes for hard hats and safety vests
-- **Classes**: `["hat", "vest"]`
-
 ## Development
 
 ### Core Components
