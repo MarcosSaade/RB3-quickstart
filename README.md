@@ -14,7 +14,7 @@ pip install -r requirements.txt
 #### GoogleNet Model
 Download the **GoogleNet Quantized INT8 (W8A8)** model from Qualcomm AI Hub:
 - Visit: https://aihub.qualcomm.com/iot/models/googlenet
-- Download the **INT8 quantized** version
+- Download the **INT8 quantized** version (w8a8)
 - Save as `googlenet_quantized.tflite` in the project directory
 
 #### ImageNet Labels
@@ -28,7 +28,7 @@ Or download from any ImageNet labels source and save as `imagenet_labels.txt`
 
 #### Image Classification
 ```bash
-# Using HTP hardware acceleration (recommended)
+# Using HTP hardware acceleration
 python classification.py --image path/to/your/image.jpg --htp
 
 # Using CPU only
@@ -43,7 +43,7 @@ python classification.py --live-camera --htp
 # Using CPU only with camera preview
 python classification.py --live-camera --cpu
 
-# Headless mode (no preview window)
+# Headless mode (no preview window, for systems without display)
 python classification.py --live-camera --htp --headless
 ```
 
