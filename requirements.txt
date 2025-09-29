@@ -1,0 +1,16 @@
+# Core dependencies
+numpy>=1.19.0
+opencv-python>=4.5.0
+typing-extensions>=3.7.4
+
+# GUI dependencies (for camera preview)
+PyGObject>=3.36.0
+
+# Note: TensorFlow Lite runtime is typically pre-installed on RB3 platform
+# If not available, install with:
+# pip install tflite-runtime
+
+# Platform-specific notes:
+# - On RB3/QualcommLinux: Most dependencies are pre-installed
+# - On Ubuntu/development systems: Install all dependencies above
+# - GStreamer libraries are required for camera interface (usually system-installed)
