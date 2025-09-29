@@ -73,6 +73,23 @@ python classification.py --live-camera --cpu
 python classification.py --live-camera --htp --headless
 ```
 
+## File Structure
+
+### Core Files
+
+- **`classification.py`** - Main entry point script that provides command-line interface for both image and live camera classification using GoogleNet model
+- **`inference_engine.py`** - TensorFlow Lite inference engine with QNN delegate support for hardware acceleration on RB3 platform
+- **`camera_interface.py`** - GStreamer-based camera interface for live video capture and real-time processing with optional GUI preview
+- **`config.py`** - Configuration constants including model paths, device detection, and performance settings
+- **`image_utils.py`** - Image processing utilities for preprocessing, format conversion, and display operations
+- **`tflite_setup.py`** - TensorFlow Lite setup and C API bindings for different device types (RB3 vs desktop)
+
+### Supporting Files
+
+- **`test_camera.py`** - Standalone camera testing utility to verify GStreamer pipeline functionality on RB3
+- **`requirements.txt`** - Python package dependencies for the project
+- **`README.md`** - This documentation file with setup instructions and usage examples
+
 ## Requirements
 
 - Qualcomm RB3 platform (or compatible Linux system)
