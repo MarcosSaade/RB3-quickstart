@@ -21,10 +21,10 @@ import numpy as np
 from typing import Optional, List, Tuple
 
 # Import existing inference components
-from inference_engine import run_inference
-from camera_interface import CameraInference
-from config import DEVICE_OS
-from image_utils import create_pixbuf_from_frame
+from common.inference_engine import run_inference
+from common.camera_interface import CameraInference
+from common.config import DEVICE_OS
+from common.image_utils import create_pixbuf_from_frame
 
  # Attempt to import GTK for optional camera display
 try:

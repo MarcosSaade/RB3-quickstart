@@ -13,9 +13,9 @@ import ctypes
 import cv2
 from typing import List, Tuple, Optional
 
-from config import DEVICE_OS, TF_MODEL, PPE_MODEL, LABELS, PPE_CONFIG, DELEGATE_PATH, CAMERA_CONFIG
-from tflite_setup import get_tflite_module, get_delegate_options_class
-from image_utils import (preprocess_image, preprocess_frame, load_labels, stable_softmax,
+from .config import DEVICE_OS, TF_MODEL, PPE_MODEL, LABELS, PPE_CONFIG, DELEGATE_PATH, CAMERA_CONFIG
+from .tflite_setup import get_tflite_module, get_delegate_options_class
+from .image_utils import (preprocess_image, preprocess_frame, load_labels, stable_softmax,
                         preprocess_ppe_image, preprocess_ppe_frame, quantize_input, dequantize)
 
 

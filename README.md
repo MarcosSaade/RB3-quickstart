@@ -75,20 +75,34 @@ python classification.py --live-camera --htp --headless
 
 ## File Structure
 
-### Core Files
+### Demo Files (Root Level)
 
-- **`classification.py`** - Main entry point script that provides command-line interface for both image and live camera classification using GoogleNet model
-- **`inference_engine.py`** - TensorFlow Lite inference engine with QNN delegate support for hardware acceleration on RB3 platform
-- **`camera_interface.py`** - GStreamer-based camera interface for live video capture and real-time processing with optional GUI preview
-- **`config.py`** - Configuration constants including model paths, device detection, and performance settings
-- **`image_utils.py`** - Image processing utilities for preprocessing, format conversion, and display operations
-- **`tflite_setup.py`** - TensorFlow Lite setup and C API bindings for different device types (RB3 vs desktop)
-
-### Supporting Files
-
+- **`classification.py`** - Main demo script that provides command-line interface for both image and live camera classification using GoogleNet model
 - **`test_camera.py`** - Standalone camera testing utility to verify GStreamer pipeline functionality on RB3
 - **`requirements.txt`** - Python package dependencies for the project
 - **`README.md`** - This documentation file with setup instructions and usage examples
+
+### Common Utilities (`common/` folder)
+
+The shared utilities are organized in the `common` folder to support multiple demos:
+
+- **`common/inference_engine.py`** - TensorFlow Lite inference engine with QNN delegate support for hardware acceleration on RB3 platform
+- **`common/camera_interface.py`** - GStreamer-based camera interface for live video capture and real-time processing with optional GUI preview
+- **`common/config.py`** - Configuration constants including model paths, device detection, and performance settings
+- **`common/image_utils.py`** - Image processing utilities for preprocessing, format conversion, and display operations
+- **`common/tflite_setup.py`** - TensorFlow Lite setup and C API bindings for different device types (RB3 vs desktop)
+- **`common/__init__.py`** - Package initialization file that exports common utilities
+
+### Adding New Demos
+
+To add a new demo, simply create a new Python file at the root level and import the needed utilities from the `common` package:
+
+```python
+from common.inference_engine import run_inference
+from common.camera_interface import CameraInference
+from common.config import DEVICE_OS
+from common.image_utils import create_pixbuf_from_frame
+```
 
 ## Requirements
 

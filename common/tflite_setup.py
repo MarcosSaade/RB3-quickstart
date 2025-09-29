@@ -8,7 +8,7 @@
 """TensorFlow Lite setup and imports based on device type."""
 
 import ctypes
-from config import DEVICE_OS, DELEGATE_PATH
+from .config import DEVICE_OS, DELEGATE_PATH
 
 if DEVICE_OS == "QualcommLinux":
     # Load TensorFlow Lite C library for QualcommLinux

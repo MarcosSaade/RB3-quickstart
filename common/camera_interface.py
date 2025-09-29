@@ -17,9 +17,9 @@ gi.require_version('Gst', '1.0')
 gi.require_version('GstVideo', '1.0')
 from gi.repository import Gst, GLib
 
-from config import CAMERA_CONFIG, PERFORMANCE_CONFIG
-from image_utils import convert_nv12_to_rgb
-from inference_engine import run_inference
+from .config import CAMERA_CONFIG, PERFORMANCE_CONFIG
+from .image_utils import convert_nv12_to_rgb
+from .inference_engine import run_inference
 
 
 def draw_ppe_detections(frame, detections, original_size=None, display_size=None):

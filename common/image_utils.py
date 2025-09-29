@@ -12,7 +12,7 @@ import numpy as np
 import gi
 gi.require_version('GdkPixbuf', '2.0')
 from gi.repository import GdkPixbuf
-from config import DISPLAY_CONFIG, PPE_CONFIG
+from .config import DISPLAY_CONFIG, PPE_CONFIG
 
 
 def stable_softmax(logits):
