@@ -79,8 +79,6 @@ python classification.py --live-camera --htp --headless
 
 - **`classification.py`** - Main demo script that provides command-line interface for both image and live camera classification using GoogleNet model
 - **`test_camera.py`** - Standalone camera testing utility to verify GStreamer pipeline functionality on RB3
-- **`requirements.txt`** - Python package dependencies for the project
-- **`README.md`** - This documentation file with setup instructions and usage examples
 
 ### Common Utilities (`common/` folder)
 
@@ -93,9 +91,9 @@ The shared utilities are organized in the `common` folder to support multiple de
 - **`common/tflite_setup.py`** - TensorFlow Lite setup and C API bindings for different device types (RB3 vs desktop)
 - **`common/__init__.py`** - Package initialization file that exports common utilities
 
-### Adding New Demos
+### Adding New Models
 
-To add a new demo, simply create a new Python file at the root level and import the needed utilities from the `common` package:
+If you want to test any other model, simply create a new Python file at the root level and import the needed utilities from the `common` package:
 
 ```python
 from common.inference_engine import run_inference
